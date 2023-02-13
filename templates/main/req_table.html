@@ -1,0 +1,39 @@
+{% extends "main/index.html" %}
+
+{% block header%}
+<h2 class="p-5">جدول {{ text }}:</h3>
+{% endblock %}
+
+{% block content %}
+<div class="px-4">
+  {% if items %}
+  <table class="table table-bordered table-striped table-primary" style="width:60rem">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">اسم المستلم</th>
+        <th scope="col">اسم العهدة</th>
+        <th scope="col">العدد</th>
+        <th scope="col">التاريخ</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.item.name }}</td>
+        <td>{{ item.count }}</td>
+        {% if item.date %}
+        <td>{{ item.date|date:"d/m/Y" }}</td>
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h3 class="px-4">لم يتم إضافة أي بيانات بعد.</h3>
+  {% endif %}
+</div>
+{% endblock %}
